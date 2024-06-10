@@ -2,6 +2,8 @@ name: to node
 on:
   push:
     branches: [ "toNodeTest" ]
+    tags:
+      - '*'
 
 jobs:
   build:
