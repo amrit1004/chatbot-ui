@@ -40,9 +40,10 @@ jobs:
             mv out dashboard
             cd dashboard
             mkdir chatbot-ui
-            mv index.html ./chatbot-ui
-            mv favicon.png ./chatbot-ui
-            mv ../public/dashboard/index.html ./dashboard
+            mv index.html chatbot-ui
+            mv favicon.png chatbot-ui
+            cd ../
+            mv public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
 
       - name: Create Release
@@ -60,6 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dashboard.tar.gz
+          asset_path: dashboard.tar.gz
           asset_name: dashboard.tar.gz
           asset_content_type: application/zip
