@@ -1,7 +1,7 @@
 name: to node
 on:
   push:
-    branches: [ "toNodeTest" ]
+    branches: [ "feature-ui" ]
     tags:
       - '*'
 
