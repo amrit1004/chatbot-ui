@@ -32,17 +32,15 @@ jobs:
 
       - name: Build Project
         run: |
-          yarn build:local
+          yarn build
           yarn export
 
       - name: Rename and zip Export
         run: |
-            mkdir -p cdn
-            cp -r out/* cdn/
-            mkdir -p dashboard
-            cp -r out/* dashboard/
+            mkdir dashboard
+            mv out dashboard
             cd dashboard
-            mkdir -p chatbot-ui
+            mkdir chatbot-ui
             cp index.html chatbot-ui
             cp favicon.png chatbot-ui
             cd ../
@@ -76,34 +74,3 @@ jobs:
           git config --local user.name "JYC0413"
           git add .
           git commit -m "upload cdn files"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          branch: feature-ui
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./cdn
-
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
