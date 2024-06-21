@@ -48,19 +48,7 @@ jobs:
             cd ../
             cp public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
-          
-      - name: Commit changes
-        run: |
-          git config --local user.email "juyichen0413@foxmail.com"
-          git config --local user.name "JYC0413"
-          git add .
-          git commit -m "upload cdn files"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          branch: feature-ui
+            rm -rf dashboard
 
       - name: Create Release
         id: create_release
@@ -80,6 +68,20 @@ jobs:
           asset_path: dashboard.tar.gz
           asset_name: dashboard.tar.gz
           asset_content_type: application/zip
+
+      - name: Commit changes
+        run: |
+          rm -rf dashboard.tar.gz
+          git config --local user.email "juyichen0413@foxmail.com"
+          git config --local user.name "JYC0413"
+          git add .
+          git commit -m "upload cdn files"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          branch: feature-ui
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
