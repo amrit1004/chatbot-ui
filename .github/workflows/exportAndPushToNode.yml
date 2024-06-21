@@ -39,6 +39,7 @@ jobs:
         run: |
             mkdir -p cdn
             cp -r out/* cdn/
+            mkdir dashboard
             cp -r out/* dashboard/
             cd dashboard
             mkdir chatbot-ui
