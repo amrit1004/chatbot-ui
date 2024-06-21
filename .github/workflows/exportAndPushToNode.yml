@@ -45,7 +45,7 @@ jobs:
             mv index.html chatbot-ui
             mv favicon.png chatbot-ui
             cd ../
-            mv public/dashboard/index.html dashboard
+            cp public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
           
       - name: Commit changes
