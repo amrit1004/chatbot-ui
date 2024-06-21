@@ -37,6 +37,8 @@ jobs:
 
       - name: Rename and zip Export
         run: |
+            mkdir cdn
+            cp -r out/* cdn/
             mv out dashboard
             cd dashboard
             mkdir chatbot-ui
