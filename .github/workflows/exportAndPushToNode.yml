@@ -47,6 +47,18 @@ jobs:
             cd ../
             mv public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "juyichen0413@foxmail.com"
+          git config --local user.name "JYC0413"
+          git add .
+          git commit -m "upload cdn files"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Create Release
         id: create_release
