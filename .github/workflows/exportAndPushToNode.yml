@@ -37,7 +37,6 @@ jobs:
 
       - name: Rename and zip Export
         run: |
-            mkdir dashboard
             mv out dashboard
             cd dashboard
             mkdir chatbot-ui
@@ -46,7 +45,6 @@ jobs:
             cd ../
             cp public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
-            rm -rf dashboard
 
       - name: Create Release
         id: create_release
