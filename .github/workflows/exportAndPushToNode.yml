@@ -37,13 +37,13 @@ jobs:
 
       - name: Rename and zip Export
         run: |
-            mv out dashboard
-            cd dashboard
-            mkdir chatbot-ui
-            cp index.html chatbot-ui
-            cp favicon.png chatbot-ui
-            cd ../
-            cp public/dashboard/index.html dashboard
+            mkdir -p dashboard
+            mv out dashboard/chatbot-ui
+            cd dashboard/chatbot-ui
+            mv _next ../
+            mv fonts ../
+            cd ../../
+            mv public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
 
       - name: Create Release
