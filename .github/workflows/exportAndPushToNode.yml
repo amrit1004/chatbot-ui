@@ -37,13 +37,13 @@ jobs:
 
       - name: Rename and zip Export
         run: |
-            mkdir cdn
+            mkdir -p cdn
             cp -r out/* cdn/
-            mv out dashboard
+            cp out dashboard
             cd dashboard
             mkdir chatbot-ui
-            mv index.html chatbot-ui
-            mv favicon.png chatbot-ui
+            cp index.html chatbot-ui
+            cp favicon.png chatbot-ui
             cd ../
             cp public/dashboard/index.html dashboard
             tar czvf dashboard.tar.gz dashboard
